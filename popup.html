@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hoken — invoice</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="invoice" class="invoice">
+    <!-- Header -->
+    <div class="invoice-header">
+      <div class="brand">
+        <h1 class="brand-name">hoken</h1>
+        <p class="brand-tagline">human, token, hoken</p>
+      </div>
+      <div class="invoice-badge">INVOICE</div>
+    </div>
+
+    <!-- Parties -->
+    <div class="parties">
+      <div class="party from">
+        <p class="party-label">FROM</p>
+        <p class="party-name">Human</p>
+      </div>
+      <div class="party to">
+        <p class="party-label">BILLED TO</p>
+        <p class="party-name" id="bill-to-name">Loading...</p>
+        <p class="party-detail" id="bill-to-url"></p>
+      </div>
+    </div>
+
+    <!-- Meta row -->
+    <div class="invoice-meta">
+      <div class="meta-item">
+        <span class="meta-label">Invoice No.</span>
+        <span class="meta-value" id="invoice-number">—</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-value" id="invoice-date">—</span>
+      </div>
+
+    </div>
+
+    <!-- Line items table -->
+    <table class="line-items">
+      <thead>
+        <tr>
+          <th class="col-desc">Description</th>
+          <th class="col-qty">Qty</th>
+          <th class="col-rate">Rate</th>
+          <th class="col-amount">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="line-items-body">
+        <!-- filled by popup.js -->
+      </tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="totals">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <span id="subtotal">$0.00</span>
+      </div>
+      <div class="total-row">
+        <span>Inference Tax (13%)</span>
+        <span id="tax">$0.00</span>
+      </div>
+      <div class="total-row">
+        <span>Hallucination Insurance</span>
+        <span id="insurance">$0.00</span>
+      </div>
+      <div class="total-row grand-total">
+        <span>Total Due</span>
+        <span id="grand-total">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="invoice-footer">
+      <p class="due-notice">Payment due upon next forward pass.</p>
+      <p class="fine-print">
+        This invoice was generated for entertainment purposes only.
+        No transformers were harmed in the reading of this page.
+        Any resemblance to actual billable API usage is purely coincidental.
+      </p>
+    </div>
+  </div>
+
+  <!-- loading state -->
+  <div id="loading" class="loading">
+    <p>Tokenizing page content...</p>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- error state -->
+  <div id="error" class="error hidden">
+    <p id="error-msg">Could not read this page.</p>
+    <p class="error-hint">Try refreshing the page and clicking hoken again.</p>
+  </div>
+
+  <script src="tokenizer.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

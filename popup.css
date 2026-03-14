@@ -1,0 +1,283 @@
+/* ── hoken invoice styles ── */
+
+:root {
+  --ink: #1a1a2e;
+  --ink-light: #4a4a6a;
+  --ink-muted: #8888a8;
+  --bg: #fdfdff;
+  --bg-alt: #f4f4fa;
+  --accent: #4f46e5;
+  --accent-light: #e8e6fc;
+  --border: #e2e2ee;
+  --danger: #e54646;
+  --radius: 6px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: fit-content;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  width: 440px;
+  padding: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── loading ── */
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 16px;
+  color: var(--ink-muted);
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── error ── */
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: var(--danger);
+}
+
+.error-hint {
+  color: var(--ink-muted);
+  font-size: 11px;
+}
+
+/* ── invoice ── */
+
+.invoice {
+  padding: 24px;
+  display: none;             /* shown by JS */
+}
+
+.invoice:not(.hidden) {
+  display: block;
+}
+
+/* header */
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.invoice-badge {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+}
+
+/* parties */
+
+.parties {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.party {
+  flex: 1;
+}
+
+.party-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.party-name {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.party-detail {
+  font-size: 11px;
+  color: var(--ink-light);
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* meta row */
+
+.invoice-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.meta-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* line items table */
+
+.line-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.line-items thead {
+  background: var(--bg-alt);
+}
+
+.line-items th {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.line-items td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.col-qty,
+.col-rate,
+.col-amount {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.col-desc {
+  min-width: 160px;
+}
+
+.line-items tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* totals */
+
+.totals {
+  margin-left: auto;
+  width: 220px;
+  border-top: 2px solid var(--border);
+  padding-top: 8px;
+  margin-bottom: 20px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 12px;
+  color: var(--ink-light);
+}
+
+.total-row.grand-total {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 2px solid var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* footer */
+
+.invoice-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.due-notice {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.fine-print {
+  font-size: 10px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
